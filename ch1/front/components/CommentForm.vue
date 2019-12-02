@@ -18,6 +18,12 @@
 import { mapState } from 'vuex'
 
 export default {
+    props: {
+        postId: {
+            type: String,
+            required: true,
+        }
+    },
     data() {
         return {
             valid: false,
@@ -25,12 +31,6 @@ export default {
             success: false,
             successMessages: '',
             hideDetails: true,
-        }
-    },
-    props: {
-        postId: {
-            type: String,
-            required: true,
         }
     },
     computed: {

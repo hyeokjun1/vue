@@ -11,6 +11,7 @@
                     :hide-details="hideDetails"
                     :success-messages="successMessages"
                     :success="success"
+                    :error="error"
                     :rules="[v => !!v.trim() || '내용을 입력해 주세요']"
                     @input="onChangeTextarea"
                 />
@@ -32,6 +33,7 @@ export default {
             success: false,
             content: '',
             valid: false,
+            error: false,
         }
     },
     computed: {
@@ -60,6 +62,7 @@ export default {
                     this.content = ''
                     this.hideDetails = false
                     this.success = true
+                    this.error = false
                     this.successMessages = '게시글 등록 성공!'
                 }).catch(() => {
 
