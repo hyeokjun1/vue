@@ -3,6 +3,7 @@
         <v-container>
             <v-form ref="form" v-model="valid" @submit.prevent="onSubmitForm">
                 <v-textarea
+                    ref="textarea"
                     v-model="content"
                     outlined
                     auto-grow
@@ -59,7 +60,7 @@ export default {
                     id: Date.now(),
                     createAt: Date.now(),
                 }).then(() => {
-                    this.content = ''
+                    this.$refs.textarea.$refs.input.value = ''
                     this.hideDetails = false
                     this.success = true
                     this.error = false

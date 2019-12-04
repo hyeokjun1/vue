@@ -1,9 +1,6 @@
 <template>
     <v-container grid-list-xs>
         <div>
-            <post-form />
-        </div>
-        <div>
             <post-card v-for="p in mainPosts" :key="p.id" :post="p" />
         </div>
     </v-container>
@@ -11,12 +8,10 @@
 
 <script>
 import PostCard from '~/components/PostCard'
-import PostForm from '~/components/PostForm'
 
 export default {
     components: {
         PostCard,
-        PostForm
     },
     data() {
         return {

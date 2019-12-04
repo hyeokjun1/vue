@@ -14,12 +14,14 @@
                 <v-container grid-list-xs="grid-list-xs">
                     <v-subheader>팔로잉</v-subheader>
                     <follow-list :users="followingList" :remove="removeFollowing" />
+                    <v-btn @click="loadMoreFollowings" v-if="hasMoreFollowing" color="primary" style="width: 100%">더 보기</v-btn>
                 </v-container>
             </v-card>
             <v-card style="margin-bottom: 20px">
                 <v-container grid-list-xs="grid-list-xs">
                     <v-subheader>팔로워</v-subheader>
                     <follow-list :users="followerList" :remove="removeFollower" />
+                    <v-btn @click="loadMoreFollowers" v-if="hasMoreFollower" color="primary" style="width: 100%">더 보기</v-btn>
                 </v-container>
             </v-card>
         </v-container>
@@ -48,6 +50,16 @@
             followingList() {
                 return this.$store.state.users.followingList;
             },
+            hasMoreFollower() {
+                return this.$store.state.users.hasMoreFollower
+            },
+            hasMoreFollowing() {
+                return this.$store.state.users.hasMoreFollowing
+            },
+        },
+        fetch( { store } ) {
+            store.dispatch('users/loadFollowers');
+            store.dispatch('users/loadFollowings');
         },
         methods: {
             onCahngeNickname() {
@@ -64,11 +76,18 @@
                 this.$store.dispatch('users/removeFollower', {
                     id
                 })
+            },
+            loadMoreFollowers() {
+                this.$store.dispatch('users/loadFollowers') 
+            },
+            loadMoreFollowings() {
+                this.$store.dispatch('users/loadFollowings') 
             }
         },
         head() {
             return {title: '프로필'}
-        }
+        },
+        middleware: 'authenticated'
     }
 </script>
 

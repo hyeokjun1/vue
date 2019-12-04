@@ -1,11 +1,15 @@
 <template>
     <div style="margin-bottom: 20px">
         <v-card>
-            <!-- <v-image name="" /> -->
+            <v-image name="" />
+            <v-card-title>
+                <h3>
+                    <nuxt-link :to="'/user/' + post.id">{{post.User.nickname}}</nuxt-link>
+                </h3>
+            </v-card-title>
             <v-card-text>
                 <div>
-                    <h3>{{post.User.nickname}}</h3>
-                    <div>{{post.content}}</div>
+                    {{post.content}}
                 </div>
             </v-card-text>
             <v-card-actions>
@@ -65,7 +69,6 @@ export default {
         post: {
             type: Object,
             required: true,
-
         }
     },
     methods: {
@@ -85,5 +88,8 @@ export default {
 </script>
 
 <style scoped>
-
+a {
+    color: rgb(78, 72, 72) !important;
+    text-decoration: none;
+}
 </style>
